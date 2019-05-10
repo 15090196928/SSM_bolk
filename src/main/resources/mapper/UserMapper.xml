@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="junxia.ma.mapper.UserMapper">
+    <resultMap id="UserResultMap" type="junxia.ma.model.User" >
+        <result column="num" property="num"  jdbcType="INTEGER"/>
+        <result column="name" property="name"  jdbcType="VARCHAR"/>
+        <result column="Mobile" property="mobile"  jdbcType="VARCHAR"/>
+        <result column="home" property="home"  jdbcType="VARCHAR"/>
+        <result column="sex" property="sex"  jdbcType="VARCHAR"/>
+    </resultMap>
+    <select id="selectUserMapper" resultMap="UserResultMap">/*resultMap返回值类型*/
+        select * from user
+    </select>
+
+    <insert id="addUserMapper" parameterType="junxia.ma.model.User">/*parameterType参数类型*/
+        insert into user(name,mobile,home,sex,num) values(#{name},#{mobile},#{home},#{sex},#{num})
+    </insert>
+
+    <delete id="deleteUserMapper" parameterType="java.lang.Integer">
+        delete from user where num=#{num}
+    </delete>
+
+    <update id="UpdateUserMapper" parameterType="junxia.ma.model.User">
+        update user set name = 'a' where num=#{num}
+    </update>
+
+</mapper>
